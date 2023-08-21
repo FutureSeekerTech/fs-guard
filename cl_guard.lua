@@ -1,12 +1,8 @@
-xys721027 = GetCurrentResourceName
 GuardServerEvent = TriggerServerEvent
 ATriggerServerEvent = TriggerServerEvent
-GuardToken = xys721027().."-fs-guard-xyz"
-
+local Debug = DebugMode or false
 TriggerServerEvent = function(eventName, ...)
-    if GuardToken ~= nil then
-        return GuardServerEvent(eventName, GuardToken, ...)
-    end
+    return GuardServerEvent(eventName, LocalPlayer.state[GlobalState["fs-guard"]], ...)
 end
 
 

@@ -1,5 +1,4 @@
-GuardToken = GetCurrentResourceName().."-fs-guard-xyz"
-local discordWebHook = "" --Discord webhook untuk notifikasi player banned
+local discordWebHook = ""
 SafeEventHandler = AddEventHandler
 -- Token Check Event Handler
 -- @@ Check token when player trigger server event
@@ -8,8 +7,8 @@ GuardEventHandler = function(eventName, callback)
 	AddEventHandler(eventName, function(token, ...)
 		local player = source
 		local playerName = GetPlayerName(player)
-
-		if GuardToken ~= token and GuardToken ~= "futureseekerbypass" then
+		local checkToken = exports['fs-guard']:tc(player, token)
+		if not checkToken then
 			local license = nil
 			local playerip      = nil
 			local playerdiscord = nil

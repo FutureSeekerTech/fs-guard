@@ -1,0 +1,1 @@
+DebugMode = false -- Enable debug mode (true/false)
