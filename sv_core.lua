@@ -44,7 +44,6 @@ function tc(src, token)
             print("token server: "..tostring(ts))
             print("token client: "..tostring(tc))
         end
-        tu(src)
         return false
     end
 end exports("tc", tc)
