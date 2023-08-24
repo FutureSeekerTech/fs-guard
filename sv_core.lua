@@ -9,13 +9,19 @@ function hg()
     return b
 end
 
--- token generator
-function tg()
-    local a = math.random(1, 999).."-"..math.random(1, 999).."-"..math.random(1, 999).."-"..math.random(1, 999)
+-- random number hash generator for updater
+function hg2()
+    local a = math.random(1, 999999)
     return a
 end
 
--- token checker
+-- token generator
+function tg()
+    local a = math.random(1000000000000000, 9999999999999999)
+    return a
+end
+
+-- token checker (Dont Change)
 function tc(src, token)
     -- var token server
     local ts = Player(src).state[GlobalState["fs-guard"]]
@@ -35,17 +41,29 @@ function tc(src, token)
         -- Update token
         if Debug then
             print("token checker for client "..src.." is wrong")
-            print("token server: "..ts)
-            print("token client: "..tc)
+            print("token server: "..tostring(ts))
+            print("token client: "..tostring(tc))
         end
         tu(src)
         return false
     end
 end exports("tc", tc)
 
+-- Token Init
+function ti(src)
+    Player(src).state:set(GlobalState["fs-guard"], tg(), true)
+    if debug then
+        print("token init->id "..src.."->"..Player(src).state[GlobalState["fs-guard"]])
+    end
+end
+
 -- Update Token
 function tu(src)
-    Player(src).state:set(GlobalState["fs-guard"], tg(), true)
+    -- current token
+    local ct = Player(src).state[GlobalState["fs-guard"]]
+    -- new token
+    local nt = ct + GlobalState["guard-updater"]
+    Player(src).state:set(GlobalState["fs-guard"], nt, false)
     if Debug then
         print("tu->"..src.."->"..Player(src).state[GlobalState["fs-guard"]])
     end
@@ -60,11 +78,15 @@ RegisterNetEvent("fs-guard:it", function(hash)
     if sh == ch then
         -- update token
         if Debug then
+            print("Server Hash: "..sh)
+            print("Client Hash: "..ch)
             print("fs-guard:it: ".."Hash Matched")
         end
-        tu(source)
+        ti(source)
     else
         if Debug then
+            print("Server Hash: "..sh)
+            print("Client Hash: "..ch)
             print("fs-guard:it: ".."Hash Not Matched")
         end
         -- kick player
@@ -72,20 +94,13 @@ RegisterNetEvent("fs-guard:it", function(hash)
     end
 end)
 
--- print token
-RegisterCommand("ptoken", function()
-    print(tg())
-end, false)
-
-RegisterCommand("phash", function()
-    print(hg())
-end, false)
-
 -- OnResourceStart
 AddEventHandler("onResourceStart", function(resourceName)
     if (GetCurrentResourceName() == resourceName) then
         print("FS-GUARD V2 by FutureSeekerTech Started")
         GlobalState["fs-guard"] = hg()
+        GlobalState["guard-updater"] = hg2()
         print("FS-GUARD V2 Hash Key: "..GlobalState["fs-guard"])
+        print("FS-GUARD V2 Updater Key: "..GlobalState["guard-updater"])
     end
 end)

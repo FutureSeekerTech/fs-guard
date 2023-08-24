@@ -5,8 +5,14 @@ TriggerServerEvent = function(eventName, ...)
     if string.find(eventName, "__ox_cb") then
         return ATriggerServerEvent(eventName, ...)
     else
-        Wait(2500)
-        return GuardServerEvent(eventName, LocalPlayer.state[GlobalState["fs-guard"]], ...)
+        Wait(1000)
+        if Debug then
+            print("CallEvent->"..eventName)
+        end
+        local ct = LocalPlayer.state[GlobalState["fs-guard"]] or 0
+        local nt = ct + GlobalState["guard-updater"]
+        LocalPlayer.state:set(GlobalState["fs-guard"], nt, false)
+        return GuardServerEvent(eventName, ct, ...)
     end
 end
 

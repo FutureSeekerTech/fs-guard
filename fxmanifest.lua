@@ -15,7 +15,7 @@ client_scripts {
 
 server_scripts {
     'sv_core.lua',
-    -- 'sv_debug.lua'
+    -- 'sv_debug.lua',
     'sv_guard.lua',
 	'@oxmysql/lib/MySQL.lua',
 }

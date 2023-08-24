@@ -12,5 +12,5 @@ end
 
 RegisterNetEvent("fs-guard:test")
 DebugEventHandler("fs-guard:test", function()
-    print("fs-guard:test")
+    print("success")
 end)
