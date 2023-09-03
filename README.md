@@ -13,11 +13,10 @@ FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan 
     3. Pastikan start/ensure fs-guard pada server.cfg setelah qb-core
 
 ## Dependency
-    1. QB-CORE
-    2. OXMYSQL
+    1. OXMYSQL
 
 ## Penggunaan
-    1. Pada resource fs-guard rubah webhook pada sv_guard.lua ke discord webhook kalian
+    1. Pada resource fs-guard rubah webhook pada sv_core.lua ke discord webhook kalian
     
     2. Pada fxmanifest script yang ingin kalian amankan tambahkan:
     
