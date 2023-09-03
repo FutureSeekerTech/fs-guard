@@ -10,7 +10,7 @@ FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan 
 
     1. Download/clone repository ini
     2. Extract/Paste folder repository di folder resource server kalian. Pastikan nama foldernya adalah fs-guard
-    3. Pastikan start/ensure fs-guard pada server.cfg setelah qb-core
+    3. Pastikan start/ensure fs-guard pada server.cfg setelah core framework kalian
 
 ## Dependency
     1. OXMYSQL
