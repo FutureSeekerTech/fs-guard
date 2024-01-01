@@ -14,6 +14,7 @@ client_scripts {
 }
 
 server_scripts {
+    'webhook.lua',
     'sv_core.lua',
     'sv_guard.lua',
 	'@oxmysql/lib/MySQL.lua',
