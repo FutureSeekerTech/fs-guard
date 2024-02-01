@@ -17,10 +17,12 @@ end)
 AddEventHandler('onResourceStart', function(resource)
     if resources[resource] == nil or resources[resource] == false then
         GetAllResources()
+        TriggerClientEvent("fs-guard:client:wl", -1, resources)
     end
 end)
 
 AddEventHandler('onResourceStop', function(resource)
     resources[resource] = nil
+    TriggerClientEvent("fs-guard:client:wl", -1, resources)
 end)
 
