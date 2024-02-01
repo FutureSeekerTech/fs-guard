@@ -3,7 +3,6 @@ local resources = {}
 function GetAllResources()
     for resIdx = 0, GetNumResources() - 1 do
         local resource = GetResourceByFindIndex(resIdx)
-        if resource == "xv-dev" then return end
         resources[resource] = true
     end
 end
