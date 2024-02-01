@@ -1,8 +1,9 @@
-fx_version 'adamant'
-game 'gta5'
+fx_version "cerulean"
+game "gta5"
 author 'FutureSeekerTech'
 description 'FS Guard V2'
-
+lua54 'yes'
+version '2.2.0'
 
 shared_scripts {
     'config.lua',
@@ -14,6 +15,7 @@ client_scripts {
 }
 
 server_scripts {
+    'whitelist.lua',
     'webhook.lua',
     'sv_core.lua',
     'sv_guard.lua',

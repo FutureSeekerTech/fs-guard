@@ -15,12 +15,12 @@
 -- Dumping structure for table esxlegacy.fsguard
 CREATE TABLE IF NOT EXISTS `fsguard` (
   `id` int(11) NOT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  `license` varchar(50) DEFAULT NULL,
-  `steam` varchar(50) DEFAULT NULL,
-  `hwid` varchar(50) DEFAULT NULL,
-  `discord` varchar(50) DEFAULT NULL,
-  `ip` varchar(50) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `license` varchar(55) DEFAULT NULL,
+  `steam` varchar(255) DEFAULT NULL,
+  `hwid` varchar(255) DEFAULT NULL,
+  `discord` varchar(255) DEFAULT NULL,
+  `ip` varchar(255) DEFAULT NULL,
   `reason` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `license` (`license`),

@@ -1,1 +1,1 @@
-local WebhookUrl = ""
+WebhookUrl = ""

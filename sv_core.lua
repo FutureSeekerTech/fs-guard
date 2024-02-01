@@ -258,6 +258,7 @@ end exports('GuardGetPlayerData', GuardGetPlayerData)
 
 -- Ban Player
 function GuardBanPlayer(source, eventName)
+    print("Detected "..eventName)
     local data = GuardGetPlayerData(source)
 	GuardNotify(data.name, data.ip, data.steam, data.hwid, data.license, data.discord, eventName)
 	ExploitBan(source, data.license, data.steam, data.hwid, data.discord, data.ip, "Exploiting "..eventName)
@@ -331,6 +332,12 @@ RegisterCommand("fsguard", function(source, args, rawCommand)
     end
 end, true)
 
+-- New Client Anti Exploit
+RegisterNetEvent("fs-guard:server:clientvalidation", function(invoking, eventName)
+    invoking = invoking or "Unknown"
+    GuardBanPlayer(source, "Client "..eventName.." from "..invoking)
+end)
+
 -- OnResourceStart
 AddEventHandler("onResourceStart", function(resourceName)
     if (GetCurrentResourceName() == resourceName) then
@@ -339,7 +346,7 @@ AddEventHandler("onResourceStart", function(resourceName)
         GlobalState["fs-guard"] = hg()
         GlobalState["guard-updater"] = hg2()
         print("FS-GUARD Hash Key: "..GlobalState["fs-guard"])
-        print("FS-GUARD Version Alpha 2.1.0 [New Patch]")
+        print("FS-GUARD Version Alpha 2.2.0")
         print("=====================================================")
         GuardGetBanData()
     end

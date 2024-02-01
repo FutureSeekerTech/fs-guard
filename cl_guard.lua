@@ -1,5 +1,6 @@
 GuardServerEvent = TriggerServerEvent
 ATriggerServerEvent = TriggerServerEvent
+SafeCallEvent = TriggerServerEvent
 local Debug = DebugMode or false
 
 -- New Patch Token updater
@@ -42,11 +43,10 @@ function fsgencrypt(key)
     newhash = tonumber(newhash)
     modulo = newhash % 2 
     if modulo == 0 then
-      newhash = newhash + 24281421
+      newhash = newhash + 57231323
     else
-      newhash = newhash - 32141753
+      newhash = newhash - 12341723
     end
-    globalkey = newhash
     return newhash
 end
 
@@ -55,16 +55,23 @@ TriggerServerEvent = function(eventName, ...)
     if string.find(eventName, "__ox_cb") then
         return ATriggerServerEvent(eventName, ...)
     else
-        Wait(1000)
-        if Debug then
-            print("CallEvent->"..eventName)
-            print("Token->"..LocalPlayer.state[GlobalState["fs-guard"]])
-        end
         local ct = LocalPlayer.state[GlobalState["fs-guard"]] or 0
         local nt = fsgencrypt(ct)
         LocalPlayer.state:set(GlobalState["fs-guard"], nt, false)
         return GuardServerEvent(eventName, ct, ...)
     end
+end
+
+GuardEventHandler = function(eventName, callback)
+	AddEventHandler(eventName, function(...)
+		invoking = GetInvokingResource()
+        if invoking == nil or invoking == GetCurrentResourceName() or exports['fs-guard']:whitelist(invoking) then
+            callback(table.unpack({ ... }))
+        else
+            CancelEvent()
+            SafeCallEvent("fs-guard:server:clientvalidation", invoking, eventName)
+        end
+	end)
 end
 
 
