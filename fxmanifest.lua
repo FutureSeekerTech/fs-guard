@@ -3,9 +3,10 @@ game "gta5"
 author 'FutureSeekerTech'
 description 'FS Guard V2'
 lua54 'yes'
-version '2.2.0'
+version '2.3.0'
 
 shared_scripts {
+    '@ox_lib/init.lua',
     'config.lua',
 }
 
@@ -20,4 +21,9 @@ server_scripts {
     'sv_core.lua',
     'sv_guard.lua',
 	'@oxmysql/lib/MySQL.lua',
+}
+
+dependencies {
+    'ox_lib',
+    'oxmysql',
 }

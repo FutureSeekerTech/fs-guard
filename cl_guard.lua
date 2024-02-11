@@ -1,7 +1,6 @@
 GuardServerEvent = TriggerServerEvent
 ATriggerServerEvent = TriggerServerEvent
 SafeCallEvent = TriggerServerEvent
-local Debug = DebugMode or false
 
 -- New Patch Token updater
 function fsgencrypt(key)
@@ -43,16 +42,18 @@ function fsgencrypt(key)
     newhash = tonumber(newhash)
     modulo = newhash % 2 
     if modulo == 0 then
-      newhash = newhash + 57231323
+        newhash = newhash + 57231323
     else
-      newhash = newhash - 12341723
+        newhash = newhash - 12341723
     end
     return newhash
-end
+end 
 
 
 TriggerServerEvent = function(eventName, ...)
     if string.find(eventName, "__ox_cb") then
+        return ATriggerServerEvent(eventName, ...)
+    elseif not lib.callback.await('fs-guard:server:watchdog', false, eventName) then
         return ATriggerServerEvent(eventName, ...)
     else
         local ct = LocalPlayer.state[GlobalState["fs-guard"]] or 0

@@ -2,6 +2,7 @@ local discordWebHook = WebhookUrl or ''
 local Debug = DebugMode or false
 local isBanDataLoaded = false
 local ListBan = {}
+local ListSecuredEvent = {}
 -- random word hash generator
 function hg()
     local a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
@@ -102,11 +103,10 @@ function fsgencrypt(key)
     newhash = tonumber(newhash)
     modulo = newhash % 2 
     if modulo == 0 then
-      newhash = newhash + 57231323
+        newhash = newhash + 57231323
     else
-      newhash = newhash - 12341723
+        newhash = newhash - 12341723
     end
-    globalkey = newhash
     return newhash
 end
 
@@ -184,7 +184,6 @@ function GuardGetBanData()
         end
     end)
     isBanDataLoaded = true
-    print("Ban Data Loaded")
 end
 
 function GuardNotify(name, ip, steam, hwid, license, discord, eventName)
@@ -206,7 +205,7 @@ function ExploitBan(id, license, steam, hwid, discord, ip, reason)
 		ip, 
 		reason
 	})
-	DropPlayer(id, 'You are banned\nReason: Exploit\nBan ID: '..lastBanId..'Please contact the server owner for more information.')
+	DropPlayer(id, 'You are banned\nReason: Exploit\nBan ID: '..lastBanId..'\nPlease contact the server owner for more information.')
 	GuardGetBanData()
 end exports("ExploitBan", ExploitBan)
 
@@ -258,11 +257,23 @@ end exports('GuardGetPlayerData', GuardGetPlayerData)
 
 -- Ban Player
 function GuardBanPlayer(source, eventName)
-    print("Detected "..eventName)
+    print("^3[Detected] ^2"..eventName)
     local data = GuardGetPlayerData(source)
 	GuardNotify(data.name, data.ip, data.steam, data.hwid, data.license, data.discord, eventName)
+    Wait(3000)
 	ExploitBan(source, data.license, data.steam, data.hwid, data.discord, data.ip, "Exploiting "..eventName)
 end exports("GuardBanPlayer", GuardBanPlayer)
+
+
+function EventRegister(eventName)
+    ListSecuredEvent[eventName] = true
+    print("^3[Secured] ^2"..eventName.."^7")
+end exports("EventRegister", EventRegister)
+
+lib.callback.register('fs-guard:server:watchdog', function(source, eventName)
+    data = ListSecuredEvent[eventName] or false 
+    return data
+end)
 
 -- Player Checker
 AddEventHandler('playerConnecting', function (playerName,setKickReason, deferrals)
@@ -329,6 +340,9 @@ RegisterCommand("fsguard", function(source, args, rawCommand)
         GuardGetBanData()
         print("Ban data refreshed")
       end
+      if args[1] == "webhooktest" then
+        GuardNotify("Test", "127.0.0.1", "1234567890", "1234567890", "1234567890", "1234567890", "Test")
+      end
     end
 end, true)
 
@@ -342,11 +356,18 @@ end)
 AddEventHandler("onResourceStart", function(resourceName)
     if (GetCurrentResourceName() == resourceName) then
         print("=====================================================")
-        print("FS-GUARD by FutureSeekerTech Started")
+        print("^2░▒█▀▀▀░▒█▀▀▀█░░░░▒█▀▀█░▒█░▒█░█▀▀▄░▒█▀▀▄░▒█▀▀▄")
+        print("░▒█▀▀░░░▀▀▀▄▄░▀▀░▒█░▄▄░▒█░▒█▒█▄▄█░▒█▄▄▀░▒█░▒█")
+        print("░▒█░░░░▒█▄▄▄█░░░░▒█▄▄▀░░▀▄▄▀▒█░▒█░▒█░▒█░▒█▄▄█")
+        print("                 ver. 2.3.0^7                ")
+        print("=====================================================")
+        print("^3Anti Client Event Exploit: ^2ON^7")
+        print("^3Anti Server Event Exploit: ^2ON^7")
+        print("^3Whitelist Resource System: ^2ON^7")
+        print("^3Token Security Layer:^2 2 Layer^7")
         GlobalState["fs-guard"] = hg()
         GlobalState["guard-updater"] = hg2()
-        print("FS-GUARD Hash Key: "..GlobalState["fs-guard"])
-        print("FS-GUARD Version Alpha 2.2.0")
+        print("^3FS-GUARD Hash Key: ^2"..GlobalState["fs-guard"].."^7")
         print("=====================================================")
         GuardGetBanData()
     end

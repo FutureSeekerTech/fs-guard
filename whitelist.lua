@@ -26,3 +26,17 @@ AddEventHandler('onResourceStop', function(resource)
     TriggerClientEvent("fs-guard:client:wl", -1, resources)
 end)
 
+RegisterCommand("rcperm", function(source, args, rawCommand)
+    if args[1] == nil or args[1] == "" then 
+      print("Gunakan rcperm <resourcename>")
+    end
+    -- If the source is > 0, then that means it must be a player.
+    if (source > 0) then
+      return false
+    -- If it's not a player, then it must be RCON, a resource, or the server console directly.
+    else
+        print("permission resource:" .. args[1].." : "..tostring(resources[args[1]]))
+    end
+end, true)
+
+

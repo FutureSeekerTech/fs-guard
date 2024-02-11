@@ -14,6 +14,7 @@ FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan 
 
 ## Dependency
     1. OXMYSQL
+    2. OX_LIB
 
 ## Penggunaan
     1. Pada resource fs-guard rubah webhook pada sv_core.lua ke discord webhook kalian
@@ -27,6 +28,8 @@ FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan 
 
     3. Pada server script kalian tambahkan GuardEventHandler ketika RegisterNetEvent. Terapkan hal ini pada seluruh RegisterNetEvent 
     kalian pada resource yang ingin diamankan
+
+    4. Hal ini juga pada client script, kalian tambahkan GuardEventHandler ketika RegisterNetEvent untuk secure client script
 
  ![serverscript](https://cdn.discordapp.com/attachments/1128226169339265125/1128621218199785502/image.png)
 
