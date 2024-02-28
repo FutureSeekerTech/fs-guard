@@ -1,10 +1,12 @@
 <p align="center">
-  <img width="240" height="240" src="https://cdn.discordapp.com/attachments/1078837522882367508/1114897951177855059/fstech_logo.png">
+  <img width="240" height="240" src="https://alfaritsii.github.io/assets/image/fstech-logo.png">
 </p>
 
 # FS-GUARD
 
 FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan pada EULEN/RedEngine dan cheat trigger lainnya, dan melakukan auto banned pada player yang menggunakan trigger event pada resource yang telah diprotect dengan FS-GUARD.
+
+![preview](https://alfaritsii.github.io/assets/image/fsguard-preview.png)
 
 ## Installation
 
@@ -24,14 +26,14 @@ FiveM script untuk mengamankan server event dari Trigger Exploit yang digunakan 
     '@fs-guard/cl_guard.lua' -> tambahkan dibagian client script dipaling atas/sebelum client script kalian
     '@fs-guard/sv_guard.lua' -> tambahkan dibagian server script dipaling atas/sebelum server script kalian
     
-  ![fxmanifest](https://cdn.discordapp.com/attachments/1128226169339265125/1128620015088836608/image.png)
+  ![fxmanifest](https://alfaritsii.github.io/assets/image/secure-event.png)
 
     3. Pada server script kalian tambahkan GuardEventHandler ketika RegisterNetEvent. Terapkan hal ini pada seluruh RegisterNetEvent 
     kalian pada resource yang ingin diamankan
 
     4. Hal ini juga pada client script, kalian tambahkan GuardEventHandler ketika RegisterNetEvent untuk secure client script
 
- ![serverscript](https://cdn.discordapp.com/attachments/1128226169339265125/1128621218199785502/image.png)
+ ![serverscript](https://alfaritsii.github.io/assets/image/fxmanifest-fsguard.png)
 
  ## Notifikasi Discord
- ![notifikasi](https://cdn.discordapp.com/attachments/1128226169339265125/1128622522829635664/image.png)
+ ![notifikasi](https://alfaritsii.github.io/assets/image/notif-fsguard.png)
