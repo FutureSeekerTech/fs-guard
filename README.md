@@ -1,3 +1,9 @@
+# UPDATE 18 October 2024
+
+The latest update available, for the detail join discord FutureSeekerTech: https://discord.gg/TRwcswBhg3
+
+Video Showcase: https://youtu.be/jwr8_fYO7vs
+
 <p align="center">
   <img width="240" height="240" src="https://alfaritsii.github.io/assets/image/fstech-logo.png">
 </p>
