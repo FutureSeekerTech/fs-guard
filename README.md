@@ -1,8 +1,14 @@
-# UPDATE 18 October 2024
+# UPDATE 24 October 2024
 
-The latest update available, for the detail join discord FutureSeekerTech: https://discord.gg/TRwcswBhg3
+The latest update available, for the detail join discord FutureSeekerTech: https://discord.gg/TRwcswBhg3 or https://futureseekertech.tebex.io/
 
 Video Showcase: https://youtu.be/jwr8_fYO7vs
+
+Current Feature:
+- Anti Event Exploit (included with encryption method to make sure communication between client and server is safe. All parameter that send to server event is encrypted to prevent to be readed with event logger).
+- Anti Exports Exploit
+- Discord Logs With ScreenShot
+- Hide Server Event Call Feature. Now you can hide server event call from client to be readed with event logger. You can enable or disable this feature
 
 <p align="center">
   <img width="240" height="240" src="https://alfaritsii.github.io/assets/image/fstech-logo.png">
