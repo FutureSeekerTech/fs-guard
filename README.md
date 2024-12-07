@@ -1,3 +1,5 @@
+# UPDATE 7 December 2024
+ - Add anti ox lib callback exploit (Join discord for more info)
 # UPDATE 24 October 2024
 
 The latest update available, for the detail join discord FutureSeekerTech: https://discord.gg/TRwcswBhg3 or https://futureseekertech.tebex.io/
